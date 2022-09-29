@@ -1,6 +1,7 @@
 import uuid from 'short-uuid';
 import _ from 'lodash';
 import { format } from "date-fns";
+import Validator from "validatorjs";
 
 export default function (app) {
   /**
@@ -36,6 +37,16 @@ export default function (app) {
       todos,
     } = req.db.data;
 
+    const validation = new Validator(req.query, {
+      page: 'required|numeric',
+      limit: 'required|numeric'
+    })
+
+    if (validation.fails()) {
+      let errors = validation.errors.all()
+      return res.status(422).json(errors)
+    }
+
     if (todolists.length === 0) return res.status(200).json({});
 
     var todoResponse = todolists
@@ -50,11 +61,6 @@ export default function (app) {
 
     const page = parseInt(req.query.page, 10);
     const limit = parseInt(req.query.limit, 10);
-
-    if (!page && !limit) {
-      res.status(200).json(todoResponse);
-      return
-    }
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
@@ -97,17 +103,22 @@ export default function (app) {
     let result = {}
     let todoArr = []
 
-    let color = req.body.color
-    if (!color) color = "white"
+    const validation = new Validator(req.body, {
+      title: 'required|max:100',
+      color: 'required|in:red,orange,yellow,green,blue,indigo,violet'
+    })
 
-    if (!req.body.title) return res.status(422).json("Todo-list must have title")
+    if (validation.fails()) {
+      let errors = validation.errors.all()
+      return res.status(422).json(errors)
+    }
 
     const todolistRec = {
       id: uuid.generate(),
       title: req.body.title,
-      color: color,
-      createdAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-      updatedAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      color: req.body.color,
+      created_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      updated_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     };
 
     todolists.push(todolistRec);
@@ -125,8 +136,8 @@ export default function (app) {
             title: todosEntry.title,
             description: todosEntry.description,
             isComplete: 0,
-            createdAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-            updatedAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+            created_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+            updated_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
           }
 
           todos.push(todoRec);
@@ -153,8 +164,16 @@ export default function (app) {
       todolists,
     } = req.db.data;
 
-    if (!req.body.todolistId) return res.status(422).json("Todo must have todolistId")
-    if (!req.body.title) return res.status(422).json("Todo must have title")
+    const validation = new Validator(req.body, {
+      todolistId: 'required',
+      title: 'required|max:100',
+      description: 'string|max:200'
+    })
+
+    if (validation.fails()) {
+      let errors = validation.errors.all()
+      return res.status(422).json(errors)
+    }
 
     const todolistId = req.body.todolistId
     const todolist = todolists.find((r) => r.id === todolistId)
@@ -168,8 +187,8 @@ export default function (app) {
       title: req.body.title,
       description: description,
       isComplete: 0,
-      createdAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-      updatedAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      created_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      updated_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     };
 
     todos.push(todosRec);
@@ -190,7 +209,16 @@ export default function (app) {
       todolists,
     } = req.db.data;
 
-    if (!req.body.title) return res.status(422).json("Todo must have title")
+    const validation = new Validator(req.body, {
+      id: 'required',
+      title: 'string|max:100',
+      color: 'in:red,orange,yellow,green,blue,indigo,violet'
+    })
+
+    if (validation.fails()) {
+      let errors = validation.errors.all()
+      return res.status(422).json(errors)
+    }
 
     const todolistId = req.body.id;
     const checkTodoList = todolists.find((r) => r.id === todolistId);
@@ -198,7 +226,7 @@ export default function (app) {
 
     const fieldsToUpdate = {
       ...req.body,
-      updatedAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+      updated_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss')
     };
 
     // Update record
@@ -229,7 +257,17 @@ export default function (app) {
       todos,
     } = req.db.data;
 
-    if (!req.body.title) return res.status(422).json("Todo must have title")
+    const validation = new Validator(req.body, {
+      id: 'required',
+      title: 'string|max:100',
+      description: 'string|max:200',
+      isComplete: 'boolean'
+    })
+
+    if (validation.fails()) {
+      let errors = validation.errors.all()
+      return res.status(422).json(errors)
+    }
 
     const todosId = req.body.id;
     const checkTodos = todos.find((r) => r.id === todosId);
@@ -237,7 +275,7 @@ export default function (app) {
 
     const fieldsToUpdate = {
       ...req.body,
-      updatedAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+      updated_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss')
     };
 
     // Update record

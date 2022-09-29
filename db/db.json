@@ -5,21 +5,35 @@
       "title": "school",
       "color": "blue",
       "created_at": "2022-09-28 07:55:11",
-      "update_at": "2022-09-28 07:55:11"
+      "updated_at": "2022-09-28 07:55:11"
     },
     {
       "id": "qNir2NSPTZSq89WzpcTyqb",
       "title": "work",
       "color": "green",
       "created_at": "2022-09-28 07:55:11",
-      "update_at": "2022-09-28 07:55:11"
+      "updated_at": "2022-09-28 07:55:11"
     },
     {
       "id": "qNir2NSPTZSq89WzpcTyqc",
       "title": "house chores",
-      "color": "pink",
+      "color": "red",
       "created_at": "2022-09-28 07:55:11",
-      "update_at": "2022-09-28 07:55:11"
+      "updated_at": "2022-09-29 22:12:24"
+    },
+    {
+      "id": "7kD36344YNtrwGT6QbeQAm",
+      "title": "Hello world",
+      "color": "red",
+      "created_at": "2022-09-29 23:22:52",
+      "updated_at": "2022-09-29 23:22:52"
+    },
+    {
+      "id": "mykecztxCgKcV4FFQWWFpT",
+      "title": "updated sample to-do list",
+      "color": "red",
+      "created_at": "2022-09-29 23:25:31",
+      "updated_at": "2022-09-29 23:39:38"
     }
   ],
   "todos": [
@@ -30,16 +44,16 @@
       "isComplete": 0,
       "todolistid": "qNir2NSPTZSq89WzpcTyqc",
       "created_at": "2022-09-28 07:55:11",
-      "update_at": "2022-09-28 07:55:11"
+      "updated_at": "2022-09-28 07:55:11"
     },
     {
       "id": "qNir2NSPTZSq89WzpcTyqe",
       "title": "clean my room",
       "description": "because someone is coming",
-      "isComplete": 1,
+      "isComplete": 0,
       "todolistid": "qNir2NSPTZSq89WzpcTyqc",
       "created_at": "2022-09-28 07:55:11",
-      "update_at": "2022-09-28 07:55:11"
+      "updated_at": "2022-09-29 22:18:00"
     },
     {
       "id": "qNir2NSPTZSq89WzpcTyqf",
@@ -48,7 +62,7 @@
       "isComplete": 0,
       "todolistid": "qNir2NSPTZSq89WzpcTyqb",
       "created_at": "2022-09-28 07:55:11",
-      "update_at": "2022-09-28 07:55:11"
+      "updated_at": "2022-09-28 07:55:11"
     },
     {
       "id": "qNir2NSPTZSq89WzpcTyqg",
@@ -57,7 +71,25 @@
       "isComplete": 0,
       "todolistid": "qNir2NSPTZSq89WzpcTyqa",
       "created_at": "2022-09-28 07:55:11",
-      "update_at": "2022-09-28 07:55:11"
+      "updated_at": "2022-09-28 07:55:11"
+    },
+    {
+      "id": "fEiLRyGiE3fFMv9Ts2a81a",
+      "todolistid": "mykecztxCgKcV4FFQWWFpT",
+      "title": "sample todo's",
+      "description": "sample todo's description",
+      "isComplete": 0,
+      "created_at": "2022-09-29 23:25:31",
+      "updated_at": "2022-09-29 23:25:31"
+    },
+    {
+      "id": "2XFMq2HCUtSKFQ57YKoZVU",
+      "todolistid": "mykecztxCgKcV4FFQWWFpT",
+      "title": "updated sample title of to-do",
+      "description": "updated sample description of to-do",
+      "isComplete": 0,
+      "created_at": "2022-09-29 23:33:59",
+      "updated_at": "2022-09-29 23:51:01"
     }
   ]
 }

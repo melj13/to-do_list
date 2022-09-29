@@ -34,6 +34,7 @@
     "nodemon": "^2.0.15",
     "superagent": "^7.1.1",
     "supertest": "^6.2.4",
+    "validatorjs": "^3.22.1",
     "vitest": "^0.23.4"
   },
   "directories": {

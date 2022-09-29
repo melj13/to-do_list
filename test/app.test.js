@@ -197,7 +197,7 @@ describe('Update Todos- FAILED', () => {
     describe('todoId does not exist', () => {
         it("returns status code 404", async (req, res) => {
             const todosupdatedPayload = {
-                id: responseTodo.id,
+                id: "1",
                 title: "test update todo-list",
                 description: "test description",
                 isComplete: 1
